@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raúl Mora Ríos | Rulberry Corp — Hub Ejecutivo</title>
-  <meta name="description" content="Portal oficial y tarjeta digital de Raúl Mora Ríos (@Rulberry). Dirección y marcas de Rulberry Corp: Rulberry Print Studio, Barro Perdido y María Enamora.">
+  <title>Rulberry Corp — Acceso Restringido</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,20 +31,114 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       padding: 40px 20px;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
-    .container {
+    /* Lock Screen Gate */
+    #lock-screen {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .lock-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2D2721 0%, #171513 100%);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin: 0 auto 20px;
+    }
+
+    .lock-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .lock-subtitle {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .lock-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .pin-input {
+      width: 100%;
+      background: #0B0A09;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 18px;
+      color: var(--text-main);
+      text-align: center;
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .pin-input:focus {
+      border-color: var(--gold);
+    }
+
+    .btn-unlock {
+      width: 100%;
+      background: var(--gold);
+      color: #0F0E0D;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-unlock:hover {
+      background: var(--gold-light);
+    }
+
+    .error-msg {
+      color: #E57373;
+      font-size: 12px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Main Hub Container (Hidden by default) */
+    #main-hub {
+      display: none;
       width: 100%;
       max-width: 580px;
-      display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* Monogram Profile */
     .profile-avatar {
       width: 86px;
       height: 86px;
@@ -90,7 +184,6 @@
       margin-bottom: 32px;
     }
 
-    /* Section Label */
     .section-label {
       width: 100%;
       font-size: 11px;
@@ -101,7 +194,6 @@
       font-weight: 600;
     }
 
-    /* Links Stack */
     .links-stack {
       width: 100%;
       display: flex;
@@ -109,7 +201,6 @@
       gap: 14px;
     }
 
-    /* Link Card */
     .link-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -122,35 +213,17 @@
       justify-content: space-between;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      overflow: hidden;
     }
 
     .link-card:hover {
       background: var(--card-hover);
       border-color: var(--gold);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
-    /* Featured / Highlight Card */
     .link-card.featured {
       background: linear-gradient(135deg, rgba(34, 30, 26, 0.9) 0%, rgba(22, 20, 18, 0.95) 100%);
       border: 1.5px solid var(--gold);
-      box-shadow: 0 10px 30px rgba(194, 155, 56, 0.12);
-    }
-
-    .link-card.featured::before {
-      content: 'LANZAMIENTO DESTACADO';
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: var(--gold);
-      color: #0F0E0D;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      padding: 3px 10px;
-      border-bottom-left-radius: 8px;
     }
 
     .card-left {
@@ -190,15 +263,8 @@
     .card-arrow {
       color: var(--text-muted);
       font-size: 18px;
-      transition: transform 0.2s ease, color 0.2s ease;
     }
 
-    .link-card:hover .card-arrow {
-      color: var(--gold);
-      transform: translateX(4px);
-    }
-
-    /* Badges */
     .badge-price {
       background: rgba(194, 155, 56, 0.2);
       color: var(--gold-light);
@@ -209,23 +275,30 @@
       border: 1px solid rgba(194, 155, 56, 0.3);
     }
 
-    /* Footer */
     footer {
       margin-top: 48px;
       text-align: center;
       font-size: 12px;
       color: #635E58;
     }
-
-    footer p {
-      margin-bottom: 6px;
-    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- Profile Header -->
+  <!-- Screen 1: Lock Screen Gate (Shown to anyone without PIN) -->
+  <div id="lock-screen">
+    <div class="lock-avatar">R</div>
+    <h1 class="lock-title">Rulberry Corp</h1>
+    <div class="lock-subtitle">Entorno Privado de Desarrollo</div>
+    <p class="lock-desc">Este portal se encuentra actualmente bajo acceso restringido. Introduce tu código de autorización para continuar.</p>
+    
+    <input type="password" id="pin-input" class="pin-input" placeholder="••••" maxlength="10" autofocus>
+    <button class="btn-unlock" onclick="unlock()">Desbloquear Acceso</button>
+    <div id="error-msg" class="error-msg">Código incorrecto. Acceso denegado.</div>
+  </div>
+
+  <!-- Screen 2: Executive Hub (Revealed only after entering PIN) -->
+  <div id="main-hub">
     <div class="profile-avatar">R</div>
     <h1 class="profile-title">Raúl Mora Ríos</h1>
     <div class="profile-subtitle">Fundador & Director de Operaciones</div>
@@ -233,7 +306,6 @@
 
     <div class="section-label">Estudio Digital & Nuevos Lanzamientos</div>
     <div class="links-stack">
-      <!-- Rulberry Print Studio (Featured) -->
       <a href="https://rulberry-studio.pages.dev" target="_blank" rel="noopener" class="link-card featured">
         <div class="card-left">
           <div class="card-icon">🎨</div>
@@ -248,7 +320,6 @@
 
     <div class="section-label">Unidades de Negocio & Marcas de Autor</div>
     <div class="links-stack">
-      <!-- Barro Perdido -->
       <a href="https://wa.me/19789533690?text=Hola%20Raul,%20me%20interesa%20conocer%20el%20catalogo%20de%20Barro%20Perdido" target="_blank" rel="noopener" class="link-card">
         <div class="card-left">
           <div class="card-icon">🏺</div>
@@ -260,7 +331,6 @@
         <div class="card-arrow">→</div>
       </a>
 
-      <!-- María Enamora -->
       <a href="https://mariaenamora.com" target="_blank" rel="noopener" class="link-card">
         <div class="card-left">
           <div class="card-icon">🕊️</div>
@@ -275,7 +345,6 @@
 
     <div class="section-label">Contacto Ejecutivo Directo</div>
     <div class="links-stack">
-      <!-- WhatsApp / Twilio Concierge -->
       <a href="https://wa.me/19789533690?text=Hola%20Raul,%20te%20contacto%20desde%20rulberry.me" target="_blank" rel="noopener" class="link-card">
         <div class="card-left">
           <div class="card-icon">💬</div>
@@ -287,7 +356,6 @@
         <div class="card-arrow">→</div>
       </a>
 
-      <!-- Email Corporativo -->
       <a href="mailto:ai.rulberry@gmail.com" class="link-card">
         <div class="card-left">
           <div class="card-icon">✉️</div>
@@ -302,9 +370,42 @@
 
     <footer>
       <p>Rulberry Corp © 2026 · Guadalajara, Jalisco</p>
-      <p>Infraestructura global desplegada en GitHub Pages & Cloudflare Edge</p>
+      <p><a href="#" onclick="logout(); return false;" style="color: #9E968F; text-decoration: underline;">Cerrar sesión de desarrollo</a></p>
     </footer>
   </div>
+
+  <script>
+    const VALID_PIN = "2026"; // PIN de acceso privado para Raúl
+
+    function checkAuth() {
+      if (sessionStorage.getItem("rulberry_auth") === "granted") {
+        document.getElementById("lock-screen").style.display = "none";
+        document.getElementById("main-hub").style.display = "flex";
+      }
+    }
+
+    function unlock() {
+      const input = document.getElementById("pin-input").value;
+      if (input === VALID_PIN) {
+        sessionStorage.setItem("rulberry_auth", "granted");
+        document.getElementById("lock-screen").style.display = "none";
+        document.getElementById("main-hub").style.display = "flex";
+      } else {
+        document.getElementById("error-msg").style.display = "block";
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem("rulberry_auth");
+      location.reload();
+    }
+
+    document.getElementById("pin-input").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") unlock();
+    });
+
+    checkAuth();
+  </script>
 
 </body>
 </html>
